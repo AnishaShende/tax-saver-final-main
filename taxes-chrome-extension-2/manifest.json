@@ -14,5 +14,11 @@
   },
   "background": {
     "service_worker": "scripts/background.js"
-  }
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["sidebar.html", "styles.css", "scripts/sidebar.js"],
+      "matches": ["<all_urls>"]
+    }
+  ]
 }
