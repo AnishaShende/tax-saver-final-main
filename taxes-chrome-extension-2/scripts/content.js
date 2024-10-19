@@ -16,18 +16,26 @@ function createSidebar(popupMessages = []) {
   sidebar.style.padding = "1em";
   sidebar.style.borderLeft = "1px solid #ccc";
 
+  console.log("inside content.js createSidebar");
   sidebar.innerHTML = `
-    <div class="chatbot-container">
-      <div class="chatbot-header">
-        <h3 class="form-chat-assistant">Form Filling Assistant</h3>
-        <button id="close-sidebar" class="autofill-button" style="background: red; color: white; border: none; padding: 5px 10px; cursor: pointer;">Close</button>
+  <head>
+    <link rel="stylesheet" href="styles/sidebar.css" />
+  </head>
+    <body>
+    <main>
+      <div class="chatbot-container">
+          <div class="chatbot-header">
+              <h3 class="form-chat-assistant">Form Filling Assistant</h3>
+              <button id="close-sidebar" class="autofill-button" style="background: red; color: white; border: none; padding: 5px 10px; cursor: pointer;">Close</button>
+          </div>
+          <div class="chatbot-conversation-container" id="sidebar-chatbox-messages" style="height: 250px; overflow-y: auto; margin: 1em 0; background-color: #f4f4f9; border: 1px solid #ccc; border-radius: var(--border-rad-lg);"></div>
+          <div class="chatbot-input-container">
+              <input type="text" id="sidebar-chatbox-input" placeholder="Ask a question..." style="width: 100%; padding: 1em; color: var(--light-text); border: 1px solid #586e88; border-radius: var(--border-rad-lg);"/>
+              <button id="sidebar-chatbox-send" style="padding: 1em; background-color: var(--dark-bg); color: var(--light-text); border: 1px solid #586e88; border-radius: var(--border-rad-lg); cursor: pointer;">Send</button>
+          </div>
       </div>
-      <div class="chatbot-conversation-container" id="sidebar-chatbox-messages" style="height: 250px; overflow-y: auto; margin: 1em 0; background-color: #f4f4f9; border: 1px solid #ccc; border-radius: var(--border-rad-lg);"></div>
-      <div class="chatbot-input-container">
-        <input type="text" id="sidebar-chatbox-input" placeholder="Ask a question..." style="width: 100%; padding: 1em; color: var(--light-text); border: 1px solid #586e88; border-radius: var(--border-rad-lg);"/>
-        <button id="sidebar-chatbox-send" style="padding: 1em; background-color: var(--dark-bg); color: var(--light-text); border: 1px solid #586e88; border-radius: var(--border-rad-lg); cursor: pointer;">Send</button>
-      </div>
-    </div>
+    </main>
+    </body>
   `;
 
   document.body.appendChild(sidebar);
@@ -37,9 +45,9 @@ function createSidebar(popupMessages = []) {
   const sidebarMessages = document.getElementById("sidebar-chatbox-messages");
 
   // Load popup chat messages into the sidebar
-  popupMessages.forEach((msg) => {
-    addMessageToSidebar(msg.text, msg.fromUser);
-  });
+  if (popupMessages) {
+    sidebarMessages.innerHTML = popupMessages; // Use the chat history from the popup
+  }
 
   sidebarSend.addEventListener("click", function () {
     const userInput = sidebarInput.value.toLowerCase().trim();
@@ -66,29 +74,15 @@ function createSidebar(popupMessages = []) {
     messageElement.style.padding = "5px";
     messageElement.style.borderRadius = "var(--border-rad-lg)";
     messageElement.style.backgroundColor = fromUser ? "#2f4f4f" : "#334959"; // Match speech bubble colors
-    messageElement.style.color = "var(--light-text)";
-    messageElement.style.textAlign = fromUser ? "right" : "left";
+    messageElement.style.color = "white"; // Set text color to white
     sidebarMessages.appendChild(messageElement);
-    sidebarMessages.scrollTop = sidebarMessages.scrollHeight; // Scroll to bottom
+    sidebarMessages.scrollTop = sidebarMessages.scrollHeight; // Scroll to the bottom
   }
 }
 
-// Function to return response based on user input
-function getResponse(userInput) {
-  const responses = {
-    "what is pan":
-      "PAN (Permanent Account Number) is a 10-character alphanumeric identifier.",
-    "what is assessment year":
-      "The assessment year is the year following the financial year in which income is evaluated for tax purposes.",
-    "how do i file taxes":
-      "You can file taxes by logging into the Income Tax Portal, filling the relevant ITR form, and submitting it.",
-  };
-  return responses[userInput] || "Sorry, I don't have an answer for that.";
-}
-
-// Listen for messages from the popup to toggle the sidebar and pass chat messages
-chrome.runtime.onMessage.addListener(function (message) {
-  if (message.action === "toggleSidebar") {
-    createSidebar(message.popupMessages); // Pass popup messages to sidebar
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+  if (request.action === "toggleSidebar") {
+    createSidebar(request.popupMessages); // Pass messages to the sidebar
+    sendResponse(); // Respond back to confirm
   }
 });

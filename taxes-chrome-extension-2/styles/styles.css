@@ -19,7 +19,7 @@ body {
 
 /* Main background for the page */
 main {
-  background-color: transparent;
+  background-color: #171f26;
   background-size: cover;
   background-repeat: no-repeat;
   display: flex;
@@ -52,7 +52,6 @@ main {
   border: none;
   border-radius: var(--border-rad-lg);
   padding: 10px 20px;
-  box-shadow: var(--neumorphic-shadow);
   cursor: pointer;
   transition: box-shadow 0.3s ease;
   color: #333;
@@ -75,6 +74,7 @@ main {
   height: 250px;
   overflow-y: scroll;
   margin: 1em 0;
+  padding: 5px;
   background-color: #f4f4f9; /* Light background for chat area */
   border: 1px solid #ccc; /* Light border */
   border-radius: var(--border-rad-lg);
@@ -105,14 +105,14 @@ main {
 
 .speech-ai {
   background: #334959;
-  border-top-left-radius: 0;
   margin: 1.2em 1em 0 0;
+  text-wrap: wrap;
 }
 
 .speech-human {
   margin: 1.2em 0 0 1em;
   background: #2f4f4f;
-  border-top-right-radius: 0;
+  text-wrap: wrap;
 }
 
 /* Input container styling */

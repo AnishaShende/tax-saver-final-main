@@ -17,7 +17,7 @@
   },
   "web_accessible_resources": [
     {
-      "resources": ["sidebar.html", "styles.css", "scripts/sidebar.js"],
+      "resources": ["styles/styles.css", "styles/sidebar.css"],
       "matches": ["<all_urls>"]
     }
   ]

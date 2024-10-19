@@ -1,0 +1,61 @@
+/* Sidebar Styles */
+#my-extension-sidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 360px; /* Match popup width */
+  height: 100%;
+  background-color: var(--dark-bg); /* Dark background from styles */
+  z-index: 10000;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+  padding: 1em;
+  border-left: 1px solid #ccc;
+}
+
+/* Chatbot Container Styles */
+.chatbot-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* Header Styles */
+.chatbot-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Conversation Container Styles */
+.chatbot-conversation-container {
+  flex-grow: 1;
+  height: 250px;
+  overflow-y: auto;
+  margin: 1em 0;
+  background-color: #f4f4f9;
+  border: 1px solid #ccc;
+  border-radius: var(--border-rad-lg);
+}
+
+/* Input Container Styles */
+.chatbot-input-container {
+  display: flex;
+  gap: 10px;
+}
+
+/* Message Styles */
+.user-message {
+  margin-bottom: 5px;
+  padding: 5px;
+  border-radius: var(--border-rad-lg);
+  background-color: #2f4f4f; /* User message background */
+  color: white; /* Set text color to white */
+}
+
+.assistant-message {
+  margin-bottom: 5px;
+  padding: 5px;
+  border-radius: var(--border-rad-lg);
+  background-color: #334959; /* Assistant message background */
+  color: white; /* Set text color to white */
+}

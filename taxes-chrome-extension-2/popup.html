@@ -1,28 +1,9 @@
-<!-- <body>
-    <h3>Form Autofill</h3>
-    <p id="message"></p>
-    <button id="autofillButton">Autofill Form</button>
-
-    <div class="chatbox">
-      <div class="chatbox-header">
-        <h4>Form Assistance Chat</h4>
-      </div>
-      <div class="chatbox-messages" id="chatbox-messages">
-         Chat messages will appear here 
-</div>
-      <input type="text" id="chatbox-input" placeholder="Ask a question..." />
-      <button id="chatbox-send">Send</button>
-    </div>
-
-    <script src="scripts/popup.js"></script>
-  </body> -->
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="styles/styles.css" />
     <title>Chatbot UI</title>
   </head>
   <body>
@@ -34,10 +15,7 @@
           <h3 class="form-chat-assistant">Form Chat Assistant</h3>
         </div>
         <div class="chatbot-conversation-container">
-          <!-- Example messages -->
           <div class="speech speech-ai">Hello! How can I assist you?</div>
-          <div class="speech speech-human"></div>
-          <div class="speech speech-ai"></div>
         </div>
         <div class="chatbot-input-container">
           <input
@@ -47,6 +25,13 @@
           />
           <button id="chatbox-send">Send</button>
         </div>
+        <button
+          id="open-sidebar-button"
+          class="autofill-button"
+          style="opacity: 0.8; margin-top: 1em; width: 100%"
+        >
+          Open in Sidebar
+        </button>
       </div>
     </main>
     <script src="scripts/popup.js"></script>
