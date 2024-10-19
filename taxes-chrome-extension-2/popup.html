@@ -1,33 +1,54 @@
+<!-- <body>
+    <h3>Form Autofill</h3>
+    <p id="message"></p>
+    <button id="autofillButton">Autofill Form</button>
+
+    <div class="chatbox">
+      <div class="chatbox-header">
+        <h4>Form Assistance Chat</h4>
+      </div>
+      <div class="chatbox-messages" id="chatbox-messages">
+         Chat messages will appear here 
+</div>
+      <input type="text" id="chatbox-input" placeholder="Ask a question..." />
+      <button id="chatbox-send">Send</button>
+    </div>
+
+    <script src="scripts/popup.js"></script>
+  </body> -->
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Popup</title>
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        width: 200px;
-        padding: 10px;
-      }
-      button {
-        padding: 10px;
-        background-color: #4caf50;
-        color: white;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-      }
-      button:hover {
-        background-color: #45a049;
-      }
-    </style>
+    <link rel="stylesheet" href="styles.css" />
+    <title>Chatbot UI</title>
   </head>
   <body>
-    <h3>Form Autofill</h3>
-    <p id="message"></p>
-    <button id="autofillButton">Autofill Form</button>
-
+    <main>
+      <div class="chatbot-container">
+        <div class="chatbot-header">
+          <h3 class="heading">Click to Autofill Form</h3>
+          <button class="autofill-button">Autofill</button>
+          <h3 class="form-chat-assistant">Form Chat Assistant</h3>
+        </div>
+        <div class="chatbot-conversation-container">
+          <!-- Example messages -->
+          <div class="speech speech-ai">Hello! How can I assist you?</div>
+          <div class="speech speech-human"></div>
+          <div class="speech speech-ai"></div>
+        </div>
+        <div class="chatbot-input-container">
+          <input
+            type="text"
+            id="chatbox-input"
+            placeholder="Type your question..."
+          />
+          <button id="chatbox-send">Send</button>
+        </div>
+      </div>
+    </main>
     <script src="scripts/popup.js"></script>
   </body>
 </html>
