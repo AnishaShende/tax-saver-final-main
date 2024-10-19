@@ -16,12 +16,14 @@ function createSidebar(popupMessages = []) {
   sidebar.style.padding = "1em";
   sidebar.style.borderLeft = "1px solid #ccc";
 
-  console.log("inside content.js createSidebar");
+  // Load external CSS
+  const linkElement = document.createElement("link");
+  linkElement.rel = "stylesheet";
+  linkElement.href = chrome.runtime.getURL("styles/sidebar.css");
+  document.head.appendChild(linkElement);
+
+  // Sidebar content
   sidebar.innerHTML = `
-  <head>
-    <link rel="stylesheet" href="styles/sidebar.css" />
-  </head>
-    <body>
     <main>
       <div class="chatbot-container">
           <div class="chatbot-header">
@@ -35,7 +37,6 @@ function createSidebar(popupMessages = []) {
           </div>
       </div>
     </main>
-    </body>
   `;
 
   document.body.appendChild(sidebar);
