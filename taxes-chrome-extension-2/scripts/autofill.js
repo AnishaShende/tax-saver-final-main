@@ -1,4 +1,47 @@
 // Example autofill data
+
+// Create a tooltip for form guidance
+function createTooltip(text, element) {
+  let tooltip = document.createElement('div');
+  tooltip.className = 'tooltip';
+  tooltip.innerHTML = text;
+  tooltip.style.position = 'absolute';
+  tooltip.style.backgroundColor = '#333';
+  tooltip.style.color = '#fff';
+  tooltip.style.padding = '5px';
+  tooltip.style.borderRadius = '5px';
+  tooltip.style.fontSize = '12px';
+  tooltip.style.top = `${element.getBoundingClientRect().top - 30}px`;
+  tooltip.style.left = `${element.getBoundingClientRect().left}px`;
+
+  document.body.appendChild(tooltip);
+
+  // Remove tooltip on mouseout
+  element.addEventListener('mouseout', () => {
+    tooltip.remove();
+  });
+}
+
+// Example usage: Show a tooltip for PAN field
+document.addEventListener('DOMContentLoaded', function() {
+  const panField = document.querySelector('input[id="panInputField"]');
+  if (panField) {
+    panField.addEventListener('mouseover', () => {
+      createTooltip("Enter your 10-digit Permanent Account Number (PAN).", panField);
+    });
+  }
+
+  const nameField = document.querySelector('input[id="nameInputField"]');
+  if (nameField) {
+    nameField.addEventListener('mouseover', () => {
+      createTooltip("Enter your full legal name as per your tax documents.", nameField);
+    });
+  }
+
+  // Add more tooltips for other fields as needed
+});
+
+
 const formData = {
   panInputField: "ABCDE1234F",
   nameInputField: "John Doe",
